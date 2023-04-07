@@ -1,29 +1,6 @@
 
 import styled from "styled-components";
 
-const Overview = styled.div`
-  display: flex;
-  justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px 20px;
-  border-radius: 10px;
-  & + & {
-    margin-top: 1rem;
-  }
-`;
-const OverviewItem = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  span:first-child {
-    font-size: 10px;
-    font-weight: 400;
-    text-transform: uppercase;
-    margin-bottom: 5px;
-  }
-`;
-
 type propTypes = {
   priceData:
      {
@@ -102,5 +79,28 @@ function Price({ priceData }: propTypes) {
     </>
   );
 }
+
+const Overview = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 10px;
+  & + & {
+    margin-top: 1rem;
+  }
+`;
+const OverviewItem = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  span:first-child {
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+`;
 
 export default Price;

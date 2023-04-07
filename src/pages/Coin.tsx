@@ -100,7 +100,7 @@ const Coin = () => {
         <title>{state?.name || "Loading"}</title>
       </Helmet>
       <Header>
-        <Title>{state?.name || "Loading"}</Title>
+        <Title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</Title>
         <button onClick={() => setter((prev) => !prev)}>Mode</button>
       </Header>
       {loading ? 
