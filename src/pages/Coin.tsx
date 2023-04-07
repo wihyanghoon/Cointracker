@@ -144,7 +144,7 @@ const Coin = () => {
 
           <Switch>
             <Route path={`/${coinId}/price`}>
-              <Price />
+              <Price priceData={priceData} />
             </Route>
             <Route path={`/${coinId}/chart`}>
               <Chart coinId={coinId}/>

@@ -22,44 +22,58 @@ type HistoryTypes = {
 const Chart = ({ coinId }: PropsTypes) => {
   const { isLoading, data } = useQuery<HistoryTypes[]>("history", () => fetchHistory(coinId));
   const isDark = useRecoilValue(isDarkAtom)
-  useEffect(() => {
-    console.log(data);
-  });
+  
+  const series = [
+    {
+      data: data?.map((price) => ({
+        x: new Date(price.time_open),
+        y: [price.open, price.high, price.low, price.close],
+      })),
+    },
+  ];
+
   return (
     <div>
       {isLoading ? (
         "Loading chart..."
       ) : (
         <ApexChart
-          type="line"
-          series={[
-            {
-              name: "Price",
-              data: data?.map((price) => price.close) as number[],
-            },
-          ]}
+          type="candlestick"
+          series={series as unknown as number[]}
           options={{
             theme: {
               mode: isDark ? "dark" : "light",
             },
             chart: {
+              type: "candlestick",
               height: 300,
               width: 500,
-              type: 'candlestick',
+              toolbar: {
+                show: false,
+              },
               background: "transparent",
             },
+            plotOptions: {
+              candlestick: {
+                wick: {
+                  useFillColor: true,
+                },
+              },
+            },
+
             grid: { show: false },
-            stroke: {
-              curve: "smooth",
-              width: 4,
+            xaxis: {
+              type: "datetime",
             },
             yaxis: {
-              show: false,
+              tooltip: {
+                enabled: true,
+              },
             },
-            xaxis: {
-              axisBorder: { show: false },
-              axisTicks: { show: false },
-              labels: { show: false },
+            tooltip: {
+              y: {
+                formatter: (value) => `$${value.toFixed(2)}`,
+              },
             },
           }}
         />
