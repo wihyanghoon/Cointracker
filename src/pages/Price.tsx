@@ -83,11 +83,13 @@ function Price({ priceData }: propTypes) {
 const Overview = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: ${props => props.theme.bgColor};
+  box-shadow:  ${props => props.theme.boxShadowNone};
+  color: ${(props) => props.theme.textColor};
   padding: 10px 20px;
   border-radius: 10px;
-  & + & {
-    margin-top: 1rem;
+  & {
+    margin-top: 30px;
   }
 `;
 const OverviewItem = styled.div`

@@ -20,20 +20,6 @@ type CoinTypes = {
 const Coins = () => {
   const { isLoading, data } = useQuery<CoinTypes[]>("getCoins", fetchCoins);
   const setter = useSetRecoilState(isDarkAtom);
-  useEffect(() => {
-    console.log(data);
-  }, []);
-  // const [coins, setCoins] = useState<CoinTypes[]>([]);
-  // const [loading, setLoading] = useState(true);
-  // // 즉시 실행 함수 실행
-  // useEffect(() => {
-  //   (async () => {
-  //     const response = await fetch("https://api.coinpaprika.com/v1/coins");
-  //     const json = await response.json();
-  //     setCoins(json.slice(0, 100));
-  //     setLoading(false);
-  //   })();
-  // }, []);
 
   return (
     <Container>
@@ -74,22 +60,27 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
-  overflow: auto;
   button {
-    background-color: #3498db;
-    color: #ffffff;
+    background: ${props => props.theme.bgColor};
+    box-shadow:  ${props => props.theme.boxShadowNone};
+    color: ${(props) => props.theme.textColor};
     border: none;
     padding: 10px 20px;
-    float: right;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+
+    &:hover{
+      box-shadow:  ${props => props.theme.boxShadowClick}
+    }
   }
 `;
 
 const Coin = styled.li`
-  background-color: #ffffff;
-  color: ${(props) => props.theme.textColor};
+  background: ${props => props.theme.bgColor};
+  box-shadow:  ${props => props.theme.boxShadowNone};
+  margin-bottom: 30px;
   border-radius: 15px;
-  margin-bottom: 10px;
+  transition: background 0.2s ease-in;
   a {
     padding: 20px;
     transition: color 0.2s ease-in;
@@ -100,6 +91,7 @@ const Coin = styled.li`
     a {
       color: ${(props) => props.theme.accentColor};
     }
+    box-shadow:  ${props => props.theme.boxShadowClick}
   }
 `;
 

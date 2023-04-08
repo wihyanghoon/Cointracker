@@ -11,5 +11,7 @@ declare module 'styled-components' {
     textColor: string;
     bgColor: string;
     accentColor: string;
+    boxShadowNone: string;
+    boxShadowClick: string;
   }
 }
