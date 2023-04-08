@@ -27,7 +27,8 @@ const Coins = () => {
         <title>Tracker</title>
       </Helmet>
       <Header>
-        <Title>Tracker</Title>
+        <Logo src={`${process.env.PUBLIC_URL}/icon-help-80d774cbc542f81b887e0a968d1bbb98.svg`} alt="" />
+        <Title>Coin Tracker</Title>
         <button onClick={() => setter((prev) => !prev)}>Mode</button>
       </Header>
       <CoinList>
@@ -38,7 +39,7 @@ const Coins = () => {
                 <Link
                   to={{
                     pathname: `/${coin.id}`,
-                    state: { name: coin.name },
+                    state: { name: coin.name , logoSrc: String(coin.symbol)},
                   }}
                 >
                   <Img
@@ -75,6 +76,13 @@ const Header = styled.header`
   }
 `;
 
+const Logo = styled.img`
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 20px auto 0px auto;
+`
+
 const Coin = styled.li`
   background: ${props => props.theme.bgColor};
   box-shadow:  ${props => props.theme.boxShadowNone};
@@ -95,11 +103,6 @@ const Coin = styled.li`
   }
 `;
 
-const Loader = styled.span`
-  display: block;
-  text-align: center;
-`;
-
 const Img = styled.img`
   width: 25px;
   margin-right: 10px;
@@ -109,7 +112,7 @@ const CoinList = styled.div``;
 
 const Title = styled.h1`
   text-align: center;
-  color: ${(props) => props.theme.accentColor};
+  color: ${(props) => props.theme.textColor};
   height: 100px;
   line-height: 100px;
   font-size: 60px;

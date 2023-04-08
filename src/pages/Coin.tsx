@@ -16,9 +16,15 @@ import Helmet from "react-helmet";
 import { useSetRecoilState } from "recoil";
 import { isDarkAtom } from "../atoms";
 
+
 type RouterTypes = {
-  name: string;
+  name: string,
+  logoSrc: string,
 };
+
+type logoTypes = {
+  logoSrc: string
+}
 
 type ParamsTypes = {
   coinId: string;
@@ -112,6 +118,7 @@ const Coin = () => {
           <Link to="/">&larr;</Link>
         </Button>
       <Header>
+        <Logo src={`https://coinicons-api.vercel.app/api/icon/${state.logoSrc.toLowerCase()}`} alt="" />
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
@@ -189,7 +196,7 @@ const Header = styled.header`
       box-shadow: ${(props) => props.theme.boxShadowClick};
     }
 
-    &:nth-child(3) {
+    &:nth-child(2) {
       margin-left: 20px;
     }
   }
@@ -197,10 +204,17 @@ const Header = styled.header`
 
 const Title = styled.h1`
   text-align: center;
-  color: ${(props) => props.theme.accentColor};
+  color: ${(props) => props.theme.textColor};
   height: 100px;
   line-height: 100px;
   font-size: 60px;
+`;
+
+const Logo = styled.img`
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 20px auto 0px auto;
 `;
 
 const Overview = styled.div`
