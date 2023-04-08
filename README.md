@@ -27,7 +27,7 @@ https://wihyanghoon.github.io/Cointracker/
 |:---:|:---:|
 |상태관리|recoil|
 |API 캐싱|react-query|
-|사이트타이틀 설정|react-query|
+|사이트타이틀 설정|react-helmet|
 
 
 ## Groupware
